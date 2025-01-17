@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Checkout Code') {
             steps {
-                git credentialsId: 'c6ca6e86-bab1-4ffa-ad4a-9f8259dcb7c6',
+                git credentialsId: 'cc5f7ffa-4d03-4902-bd1d-3b0d9b758de6',
                 url: 'https://github.com/IMASHM/Jenkins-Zero-To-Hero.git',  // Repo URL
                 branch: 'main'
             }
@@ -38,7 +38,7 @@ pipeline {
 
         stage('Checkout K8S Manifests') {
             steps {
-                git credentialsId: 'c6ca6e86-bab1-4ffa-ad4a-9f8259dcb7c6', 
+                git credentialsId: 'cc5f7ffa-4d03-4902-bd1d-3b0d9b758de6', 
                 url: 'https://github.com/IMASHM/Jenkins-Zero-To-Hero.git',  // Repo URL (same for your case)
                 branch: 'main'
             }
@@ -47,7 +47,7 @@ pipeline {
         stage('Update K8S Manifest & Push to Repo') {
             steps {
                 script {
-                    withCredentials([usernamePassword(credentialsId: 'c6ca6e86-bab1-4ffa-ad4a-9f8259dcb7c6', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
+                    withCredentials([usernamePassword(credentialsId: 'cc5f7ffa-4d03-4902-bd1d-3b0d9b758de6', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
                         sh '''
                         cat deploy/deploy.yaml  // Assuming your Kubernetes manifest is under deploy/deploy.yaml
                         sed -i "s/32/${BUILD_NUMBER}/g" deploy/deploy.yaml
